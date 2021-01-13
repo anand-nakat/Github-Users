@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 const Followers = () => {
   const { followers } = useGlobalContext();
-  console.log(followers);
+
   return (
     <article className="h-80 overflow-scroll  bg-gray-50 dark:bg-gray-900  dark:gray-900 text-gray-800 dark:text-gray-100 px-5 py-3 rounded">
       <h2 className="font-semibold text-2xl uppercase">Followers</h2>
       {followers.length < 1 ? (
-        "No Followers yet"
+        <p className="capitalize font-semibold mt-16 text-center text-red-400 text-xl">
+          No Followers yet :(
+        </p>
       ) : (
         <div className="mt-3 p-2 space-y-4">
           {followers.map((follower) => {

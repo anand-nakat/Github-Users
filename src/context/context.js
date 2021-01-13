@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import mockUser from "./mockData.js/mockUser";
+/* import mockUser from "./mockData.js/mockUser";
 import mockRepos from "./mockData.js/mockRepos";
-import mockFollowers from "./mockData.js/mockFollowers";
+import mockFollowers from "./mockData.js/mockFollowers"; */
 import axios from "axios";
 
 const rootUrl = "https://api.github.com";
@@ -9,9 +9,9 @@ const rootUrl = "https://api.github.com";
 const GithubContext = React.createContext();
 
 const GithubProvider = ({ children }) => {
-  const [user, setUser] = useState(mockUser);
-  const [repos, setRepos] = useState(mockRepos);
-  const [followers, setFollowers] = useState(mockFollowers);
+  const [user, setUser] = useState([]);
+  const [repos, setRepos] = useState([]);
+  const [followers, setFollowers] = useState([]);
   const [requests, setRequests] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
@@ -26,11 +26,10 @@ const GithubProvider = ({ children }) => {
   const fetchRequests = () => {
     axios(`${rootUrl}/rate_limit`)
       .then(({ data }) => {
-        console.log(data);
         let {
           rate: { remaining },
         } = data;
-        console.log(remaining);
+
         setRequests(remaining);
         if (remaining === 0) {
           toggleError(true, `You've exceeded maximum no of Requests per hour`);
@@ -38,8 +37,7 @@ const GithubProvider = ({ children }) => {
       })
       .catch((error) => console.log(error));
   };
-  /* - [Repos](https://api.github.com/users/john-smilga/repos?per_page=100)
-- [Followers](https://api.github.com/users/john-smilga/followers) */
+
   const searchGithubUser = async (user) => {
     setIsLoading(true);
     const response = await axios(`${rootUrl}/users/${user}`).catch((err) =>
@@ -47,6 +45,18 @@ const GithubProvider = ({ children }) => {
     );
     if (response) {
       toggleError();
+
+      //Get Followers
+      axios(`${rootUrl}/users/${user}/followers`)
+        .then((res) => setFollowers(res.data))
+        .catch((err) => console.log(err));
+
+      //Get Repos
+      axios(`${rootUrl}/users/${user}/repos?per_page=100`)
+        .then((res) => setRepos(res.data))
+        .catch((err) => console.log(err));
+
+      //Set user
       setUser(response.data);
     } else {
       toggleError(
@@ -59,6 +69,10 @@ const GithubProvider = ({ children }) => {
   };
 
   useEffect(fetchRequests, []);
+  useEffect(() => {
+    searchGithubUser("anand-nakat");
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <GithubContext.Provider
