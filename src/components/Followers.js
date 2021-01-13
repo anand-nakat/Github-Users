@@ -9,7 +9,7 @@ const Followers = () => {
     <article className="h-80 overflow-scroll  bg-gray-50 dark:bg-gray-900  dark:gray-900 text-gray-800 dark:text-gray-100 px-5 py-3 rounded">
       <h2 className="font-semibold text-2xl uppercase">Followers</h2>
       {followers.length < 1 ? (
-        <p className="capitalize font-semibold mt-16 text-center text-red-400 text-xl">
+        <p className="capitalize font-semibold mt-16 text-center text-red-400 dark:text-yellow-400 text-xl">
           No Followers yet :(
         </p>
       ) : (

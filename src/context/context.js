@@ -56,6 +56,20 @@ const GithubProvider = ({ children }) => {
         .then((res) => setRepos(res.data))
         .catch((err) => console.log(err));
 
+      await Promise.allSettled([
+        axios(`${rootUrl}/users/${user}/followers`),
+        axios(`${rootUrl}/users/${user}/repos?per_page=100`),
+      ]).then((result) => {
+        const [followers, repos] = result;
+        console.log(followers);
+        if (followers.status === "fulfilled") {
+          setFollowers(followers.value.data);
+        }
+        if (repos.status === "fulfilled") {
+          setRepos(repos.value.data);
+        }
+      });
+
       //Set user
       setUser(response.data);
     } else {
