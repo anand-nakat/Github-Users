@@ -26,8 +26,8 @@ const ThemeSwitch = () => {
     <div className="absolute dark:text-gray-50 flex items-center right-2 space-x-0.5 text-2xl text-gray-800 top-3">
       <HiMoon
         className={`${
-          !checked ? "text-blue-700 scale-110 dark:text-blue-500" : null
-        } cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transform transition-all`}
+          !checked ? "text-blue-700 scale-110 dark:text-yellow-500" : null
+        } cursor-pointer hover:text-blue-600 dark:hover:text-yellow-500 hover:scale-110 transform transition-all`}
         onClick={() => {
           setChecked(false);
           toggleDarkMode();
@@ -44,14 +44,14 @@ const ThemeSwitch = () => {
         height={15}
         width={48}
         onColor={`#0d2467`}
-        offColor={`#3b82f6`}
+        offColor={`#df8d04`}
         handleDiameter={20}
       />
 
       <HiSun
         className={`${
-          !checked ? null : "text-blue-700 scale-110 dark:text-blue-500"
-        } cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transform transition-all`}
+          !checked ? null : "text-blue-700 scale-110 dark:text-yellow-500"
+        } cursor-pointer hover:text-blue-600 dark:hover:text-yellow-500 hover:scale-110 transform transition-all`}
         onClick={() => {
           setChecked(true);
           toggleDarkMode();
