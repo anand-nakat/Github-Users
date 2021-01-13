@@ -5,20 +5,22 @@ import ThemeSwitch from "./components/ThemeSwitch";
 function App() {
   return (
     <>
-      <Router>
-        <ThemeSwitch />
-        <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="*">
-            <Error />
-          </Route>
-        </Switch>
-      </Router>
+      <AuthWrapper>
+        <Router>
+          <ThemeSwitch />
+          <Switch>
+            <PrivateRoute exact path="/">
+              <Dashboard />
+            </PrivateRoute>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="*">
+              <Error />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthWrapper>
     </>
   );
 }

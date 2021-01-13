@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import loginImg from "../images/login-img.svg";
 const Login = () => {
+  const { loginWithRedirect } = useAuth0();
   return (
     <Wrapper className="bg-blue-100 dark:bg-gray-800">
       <main className="container">
@@ -11,6 +12,7 @@ const Login = () => {
         </h1>
         <img src={loginImg} alt="Github Users" />
         <button
+          onClick={loginWithRedirect}
           className="p-2 px-4 text-lg uppercase font-bold bg-blue-500 text-blue-100
         hover:bg-blue-400  transition-colors dark:bg-blue-700 dark:hover:bg-blue-600"
         >
