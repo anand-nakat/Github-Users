@@ -1,29 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Switch from "react-switch";
 import { HiOutlineSun as HiSun, HiOutlineMoon as HiMoon } from "react-icons/hi";
+import { useGlobalContext } from "../context/context";
 
 const ThemeSwitch = () => {
-  let mode = true;
-  if (sessionStorage.getItem("Mode")) {
-    mode = sessionStorage.getItem("Mode") === `Dark` ? false : true;
-  }
+  const { checked, toggleDarkMode, setChecked } = useGlobalContext();
 
-  let html = document.querySelector("html");
-  if (mode === false) {
-    html.classList.add("dark");
-  }
-  const [checked, setChecked] = useState(mode);
-  const toggleDarkMode = () => {
-    if (checked) {
-      html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-    }
-    setChecked(!checked);
-    sessionStorage.setItem("Mode", checked ? `Dark` : `Light`);
-  };
   return (
-    <div className="absolute dark:text-gray-50 flex items-center right-2 space-x-0.5 text-2xl text-gray-800 top-3">
+    <div className="dark:text-gray-50 flex items-center ml-auto mr-3 mt-4 space-x-0.5 text-2xl text-gray-800 w-max">
       <HiMoon
         className={`${
           !checked ? "text-blue-700 scale-110 dark:text-yellow-500" : null

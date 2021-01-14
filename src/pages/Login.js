@@ -1,41 +1,53 @@
 import React from "react";
+import image from "../images/landing page.svg";
 import { useAuth0 } from "@auth0/auth0-react";
-import styled from "styled-components";
-import loginImg from "../images/login-img.svg";
 const Login = () => {
   const { loginWithRedirect } = useAuth0();
   return (
-    <Wrapper className="bg-blue-100 dark:bg-gray-800">
-      <main className="container">
-        <h1 className=" font-bold mx-auto px-2 text-5xl text-blue-800 dark:text-blue-50 tracking-wide w-max">
+    <main className="min-h-screen bg-gray-200">
+      <header className="bg-gradient-to-br from-light-blue-600 p-5 sm:clip-path-bottom sm:pb-20 to-light-blue-700">
+        <h1 className="font-bold text-5xl text-center text-white tracking-wide uppercase">
           Github Users
         </h1>
-        <img src={loginImg} alt="Github Users" />
-        <button
-          onClick={loginWithRedirect}
-          className="p-2 px-4 text-lg uppercase font-bold bg-blue-500 text-blue-100
-        hover:bg-blue-400  transition-colors dark:bg-blue-700 dark:hover:bg-blue-600"
-        >
-          log in / sign up
-        </button>
-      </main>
-    </Wrapper>
+        <div className="gap-y-4 grid grid-cols-1 items-center md:grid-cols-2 mt-3">
+          <div className="h-full">
+            <img
+              src={image}
+              alt="img"
+              className="lg:w-3/4 md:w-5/6 mx-auto w-2/3 xl:w-2/3"
+            />
+          </div>
+          <div className="font-poppins md:text-xl xl:text-2xl p-4 text-lg text-light-blue-50">
+            <p className>
+              <span className="pl-5">Github Users </span> is a Web Application
+              which uses Github API to provide a summary about a Github User,
+              like number of Repositories owned by the User, number of
+              Followers, Gists created, etc.
+            </p>
+            <p className="mt-5">
+              It uses Fusion Charts to represent more info like Most Used
+              Languages by the User, Most Starred Repositories, Most Forked
+              Repositories in the form of Charts.
+            </p>
+          </div>
+        </div>
+      </header>
+      <section className="mt-5">
+        <div className="gap-y-4 grid mx-auto place-items-center">
+          <p className="font-extralight font-raleway px-2 text-center text-gray-800 text-xl">
+            To get started, you will need to Login or Create a New account.{" "}
+            <br /> You can also Log In with your social accounts
+          </p>
+          <button
+            onClick={loginWithRedirect}
+            className="bg-light-blue-600 font-bold hover:bg-light-blue-500 p-2 px-12 text-lg text-light-blue-100 transition-colors uppercase"
+          >
+            log in / sign up
+          </button>
+        </div>
+      </section>
+    </main>
   );
 };
-const Wrapper = styled.section`
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  .container {
-    width: 90vw;
-    max-width: 600px;
-    text-align: center;
-  }
-  img {
-    margin-bottom: 2rem;
-  }
-  h1 {
-    margin-bottom: 1.5rem;
-  }
-`;
+
 export default Login;

@@ -1,8 +1,17 @@
+const colors = require("tailwindcss/colors");
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "light-blue": colors.lightBlue,
+      },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        raleway: ["Raleway", "sans-serif"],
+      },
+    },
   },
   variants: {
     extend: {},

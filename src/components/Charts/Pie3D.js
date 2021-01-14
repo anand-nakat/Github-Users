@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import FusionCharts from "fusioncharts";
 import Charts from "fusioncharts/fusioncharts.charts";
 import ReactFC from "react-fusioncharts";
@@ -18,7 +17,8 @@ const Chart = ({ data }) => {
         caption: "Languages",
         theme: "fusion",
         decimals: 0,
-        pieRadius: "35%",
+        pieRadius: "40%",
+        showCanvasBorder: "0",
       },
       data,
     },

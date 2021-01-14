@@ -1,6 +1,5 @@
 import React from "react";
 import { useGlobalContext } from "../context/context";
-import styled from "styled-components";
 import { MdBusiness, MdLocationOn, MdLink } from "react-icons/md";
 const Card = () => {
   const { user } = useGlobalContext();
@@ -16,14 +15,15 @@ const Card = () => {
   } = user;
 
   return (
-    <article className="bg-gray-50 dark:bg-gray-900 relative dark:gray-900 text-gray-900 dark:text-gray-100 px-5 py-3 rounded">
-      <div className="gap-4 grid grid-cols-3-auto">
+    <article className="bg-gray-50 dark:bg-gray-900 relative dark:gray-900 text-gray-900 dark:text-gray-100 px-5 py-3 rounded-lg shadow">
+      <h2 className="font-semibold text-2xl uppercase">User</h2>
+      <div className="gap-4 grid grid-cols-3-auto mt-4">
         <img
           src={avatar_url}
           alt="avatar"
           className="h-24 rounded-full shadow-xl w-24"
         />
-        <div className="flex flex-col items-center justify-self-start self-center">
+        <div className="flex flex-col justify-self-start self-center">
           <h2 className="text-gray-900 dark:text-gray-50 text-2xl font-semibold">
             {name}
           </h2>
@@ -32,20 +32,21 @@ const Card = () => {
         <a
           href={html_url}
           target="_blank"
-          className="bg-green-300 hover:bg-green-400 transition-colors font-semibold justify-self-end px-2 py-1 rounded self-center text-green-800 text-center"
+          rel="noreferrer"
+          className="bg-gradient-to-br font-semibold from-blue-200 hover:scale-105 justify-self-end px-2 py-1 shadow-lg rounded self-center text-blue-800 text-center to-blue-400 transform transition-transform"
         >
           Visit Profile
         </a>
       </div>
 
       <div
-        className="my-3 text-lg dark:text-gray-200
+        className="my-3 text-xl dark:text-gray-200
 text-gray-800"
       >
         {bio || "Github User"}
       </div>
 
-      <div className="dark:text-gray-300 mt-4 space-y-2 text-gray-700 text-lg">
+      <div className="dark:text-gray-300 mt-4 space-y-2 text-gray-600 text-xl">
         <div className="flex items-center space-x-3">
           <MdBusiness className="text-xl" />
           <p>{company || "Me"}</p>
@@ -60,8 +61,10 @@ text-gray-800"
             href={blog}
             className="flex items-center space-x-3 hover:text-black dark:hover:text-white transition-colors"
           >
-            <MdLink className="text-xl" />
-            <p>{blog} </p>
+            <MdLink className="text-2xl" />
+            <p className="bg-clip-text bg-gradient-to-tl dark:from-green-300 dark:to-blue-400 font-bold from-pink-700 text-transparent to-indigo-600">
+              {blog}{" "}
+            </p>
           </a>
         )}
       </div>

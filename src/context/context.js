@@ -19,6 +19,29 @@ const GithubProvider = ({ children }) => {
     content: "",
   });
 
+  //Dark Mode
+  let mode = true;
+  if (sessionStorage.getItem("Mode")) {
+    mode = sessionStorage.getItem("Mode") === `Dark` ? false : true;
+  }
+
+  let html = document.querySelector("html");
+  if (mode === false) {
+    html.classList.add("dark");
+  }
+  const [checked, setChecked] = useState(mode);
+  const toggleDarkMode = () => {
+    if (checked) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+    setChecked(!checked);
+    sessionStorage.setItem("Mode", checked ? `Dark` : `Light`);
+  };
+
+  // const [isDarkMode, setIsDarkMode] = useState(false);
+
   const toggleError = (show = false, content = "") => {
     setError({ show, content });
   };
@@ -61,7 +84,7 @@ const GithubProvider = ({ children }) => {
         axios(`${rootUrl}/users/${user}/repos?per_page=100`),
       ]).then((result) => {
         const [followers, repos] = result;
-        console.log(followers);
+
         if (followers.status === "fulfilled") {
           setFollowers(followers.value.data);
         }
@@ -98,6 +121,9 @@ const GithubProvider = ({ children }) => {
         isLoading,
         error,
         searchGithubUser,
+        checked,
+        toggleDarkMode,
+        setChecked,
       }}
     >
       {children}

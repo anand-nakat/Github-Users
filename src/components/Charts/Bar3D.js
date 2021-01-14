@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import FusionCharts from "fusioncharts";
 import Charts from "fusioncharts/fusioncharts.charts";
 import ReactFC from "react-fusioncharts";
@@ -21,6 +20,9 @@ const Chart = ({ data }) => {
         xAxisFontSize: "16px",
         yAxisFontSize: "16px",
         theme: "fusion",
+        showCanvasBorder: "0",
+        baseFontColor: "#000000",
+        // canvasBgColor: "#000000",
       },
       data,
     },

@@ -9,4 +9,22 @@
   .grid-cols-3-auto {
     grid-template-columns: auto 1fr 1fr;
   }
+
+  @variants responsive {
+    .clip-path-bottom {
+      clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 90%);
+    }
+  }
+  ::-webkit-scrollbar-track-piece {
+    @apply dark:bg-gray-900 bg-transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-blue-300 to-indigo-400  rounded-lg transition-colors;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gradient-to-b from-blue-400 to-indigo-500;
+  }
 }
