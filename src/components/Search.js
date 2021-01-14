@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
 import { useGlobalContext } from "../context/context";
 const Search = () => {
@@ -15,6 +15,16 @@ const Search = () => {
       searchGithubUser(user);
     }
   };
+
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const openTooltip = () => {
+    setTimeout(() => {
+      setShowTooltip(false);
+    }, 6000);
+    setShowTooltip(true);
+  };
+
   return (
     <>
       {show && (
@@ -44,10 +54,22 @@ const Search = () => {
             </button>
           )}
         </form>
-        <h2 className="text-gray-600 dark:text-gray-300 justify-self-end">
-          Requests {requests} / 60
-        </h2>
+        <div className="text-gray-600 dark:text-gray-300 justify-self-end space-x-3">
+          <span> Requests {requests} / 60</span>
+          <span
+            onClick={() => openTooltip()}
+            className="bg-gray-900 cursor-pointer dark:bg-black px-2 rounded-full text-gray-50 text-lg"
+          >
+            ?
+          </span>
+        </div>
       </section>
+      {showTooltip && (
+        <div className="bg-light-blue-300 dark:bg-light-blue-600 dark:text-gray-200 font-semibold max-w-xs md:ml-auto md:mx-0 md:my-3 mx-auto p-2 rounded-lg shadow text-light-blue-800">
+          Github API has a Rate Limit which allows for up to 60 Search requests
+          per hour.
+        </div>
+      )}
     </>
   );
 };
