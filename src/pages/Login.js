@@ -18,7 +18,7 @@ const Login = () => {
             />
           </div>
           <div className="font-poppins md:text-xl xl:text-2xl p-4 text-lg text-light-blue-50">
-            <p className>
+            <p>
               <span className="pl-5">Github Users </span> is a Web Application
               which uses Github API to provide a summary about a Github User,
               like number of Repositories owned by the User, number of
